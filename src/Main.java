@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Scanner;
 
 public class Main {
@@ -9,7 +7,7 @@ public class Main {
         System.out.println(calc(s));
     }
 
-        public static String calc(@NotNull String input) {
+        public static String calc(String input) {
             String[] all = input.split(" ");
             int a = Integer.parseInt(all[0]);
             int b = Integer.parseInt(all[2]);
