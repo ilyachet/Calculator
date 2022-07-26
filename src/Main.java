@@ -4,8 +4,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException, NoSuchMethodException {
         Scanner scanner = new Scanner(System.in);
-        String s = scanner.nextLine();
-        System.out.println(calc(s));
+        String s = "";
+        while(s != "stop") {
+            s = scanner.nextLine();
+            System.out.println(calc(s));
+        }
 
     }
 
@@ -21,13 +24,7 @@ public class Main {
             } else {
                 throw new IOException("Каждое число должно быть целым и находится в интервале от 1 до 10");
             }
-        } else {
-            try {
-                Romanian a = Romanian.valueOf(all[0]);
-                Romanian b = Romanian.valueOf(all[2]);
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("Введите целое число");
-            }
+        } else if (isRoman(all[0]) && isRoman(all[2])){
             Romanian a = Romanian.valueOf(all[0]);
             Romanian b = Romanian.valueOf(all[2]);
             if ((1 <= a.getValue() && a.getValue() <= 10) && (1 <= b.getValue() && b.getValue() <= 10)) {
@@ -40,6 +37,10 @@ public class Main {
             } else {
                 throw new IOException("Каждое число должно быть целым и находится в интервале от 1 до 10");
             }
+        } else if ((isDigit(all[0]) && isRoman(all[2])) || (isDigit(all[2]) && isRoman(all[0]))) {
+            throw new IllegalArgumentException("Нельзя проводить операции между римскими и арабскими цифрами");
+        } else {
+            throw new IOException("Введите корректные числа");
         }
     }
 
@@ -71,6 +72,17 @@ public class Main {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private static boolean isRoman(String obj) {
+        try {
+            Romanian a = Romanian.valueOf(obj);
+            return true;
+        }
+        catch (IllegalArgumentException e) {
+            return false;
+        }
+
     }
 
 
