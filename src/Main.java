@@ -5,10 +5,8 @@ public class Main {
     public static void main(String[] args) throws IOException, NoSuchMethodException {
         Scanner scanner = new Scanner(System.in);
         String s = "";
-        while(s != "stop") {
-            s = scanner.nextLine();
-            System.out.println(calc(s));
-        }
+        s = scanner.nextLine();
+        System.out.println(calc(s));
 
     }
 
